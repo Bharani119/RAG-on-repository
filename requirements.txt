@@ -1,0 +1,10 @@
+gitpython
+python-dotenv
+langchain_openai 
+langchain_core
+langchain_community
+faiss-cpu
+streamlit
+fastapi
+uvicorn
+sse_starlette
