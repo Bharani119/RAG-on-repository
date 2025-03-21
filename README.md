@@ -55,7 +55,18 @@ A **RAG (Retrieval-Augmented Generation)** application that answers users' queri
 
 ## How to Run the Application
 
-### Step 1: Build the Docker Image
+### Step 1: Generate Embeddings
+To generate embeddings based on new content from the repository, run the following command:
+
+```python
+python3 generate_embeddings.py
+```
+
+This command will clone the repository if it is not already present and then generate and store the embeddings.
+
+**Note:** Pre-generated embeddings are already available and stored in the directory `faiss_index/`
+
+### Step 2: Build the Docker Image
 Run the following command to build a Docker image for the FastAPI application:
 
 ```bash
@@ -71,7 +82,7 @@ What this command will do:
 
 ---
 
-### Step 2: Run the Docker Container
+### Step 3: Run the Docker Container
 Start the Docker container with the following command:
 
 ```bash
@@ -82,7 +93,7 @@ This command runs the image as a container and exposes port `8000` on `localhost
 
 ---
 
-### Step 3: Run the Client Application
+### Step 4: Run the Client Application
 To start the web-based Streamlit frontend:
 
 1. Install Streamlit if it’s not already installed:
