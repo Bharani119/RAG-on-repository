@@ -7,19 +7,23 @@ from langchain.chains import create_retrieval_chain
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.prompts import ChatPromptTemplate
 
+# load environment variables for keys
 load_dotenv()
 
+# Define the embeddings object
 embeddings = AzureOpenAIEmbeddings(
     azure_deployment="text-embedding-3-small-1",
     # Set the flag to False for models which do not support token ids in inputs
     check_embedding_ctx_length=False,
 )
 
+# Define the llm
 llm = AzureChatOpenAI(
     # azure_deployment="gpt-4o-mini-2024-07-18",
     azure_deployment="gpt-4o",
 )
 
+# Load the database from local
 db = FAISS.load_local("faiss_index", embeddings, allow_dangerous_deserialization=True)
 
 ## Design ChatPrompt Template

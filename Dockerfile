@@ -9,10 +9,7 @@ ENV PYTHONUNBUFFERED=1
 WORKDIR /app
 
 # Copy the application files to the working directory
-COPY requirements.txt /app/
-COPY app.py /app/
-COPY server_llm.py /app/
-COPY .env /app/
+COPY requirements.txt app.py server_llm.py .env /app/
 COPY faiss_index/ /app/faiss_index/
 
 # Install dependencies

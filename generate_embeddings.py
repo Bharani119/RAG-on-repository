@@ -9,19 +9,21 @@ from langchain_community.vectorstores import FAISS
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_openai import AzureOpenAIEmbeddings
 
-
+# load environment variables for keys
 load_dotenv()
 
 
 repo_url = "https://github.com/vanna-ai/vanna.git"
 repo_dir = "./repo"
 
+# create faiss embeddings if not exist
 if not os.path.exists(repo_dir) and not os.path.exists("faiss_index/"):
     git.Repo.clone_from(repo_url, repo_dir)
 else:
     print("Embeddings exist")
     sys.exit()
 
+# Define the loader to load the files from the repo
 loader = GenericLoader.from_filesystem(
     "./repo",
     glob="**/[!.]*",
@@ -33,6 +35,8 @@ loader = GenericLoader.from_filesystem(
 documents = loader.load()
 # pprint(documents[::-1])
 print("Number of files", len(documents))
+
+# define the text splitter
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=250)
 
 print("splitting documents")
@@ -40,7 +44,7 @@ docs = text_splitter.split_documents(documents)
 # pprint(docs[::-1])
 print("Number of Documents:", len(docs))
 
-
+# Define the embeddings object
 embeddings = AzureOpenAIEmbeddings(
     azure_deployment="text-embedding-3-small-1",
     # Set the flag to False for models which do not support token ids in inputs
@@ -56,6 +60,7 @@ with tqdm(total=len(docs), desc="Ingesting documents") as pbar:
         else:
             db = FAISS.from_documents([d], embeddings)
         pbar.update(1)
+
 # db = FAISS.from_documents(docs, embeddings)
 print("Storing embeddings in faiss_index")
 db.save_local("faiss_index")

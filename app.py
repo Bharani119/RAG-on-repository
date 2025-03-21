@@ -15,6 +15,7 @@ class Query(BaseModel):
 
 @app.get("/")
 async def hi():
+    """A simple endpoint to confirm the API is working."""
     return {"message": "API is working"}
 
 
