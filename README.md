@@ -11,6 +11,7 @@ A **RAG (Retrieval-Augmented Generation)** application that answers users' queri
 
 ### 2. `generate_embeddings.py`
 - Generates embeddings for your documents and saves them to the specified `faiss_index` path.
+- Files with extensions `.py`, `.md`, and `.txt` were considered for generating the embeddings as they provide relevant knowledge about the repository.
 
 ### 3. `server_llm.py`
 - Loads and initializes the embeddings, the language model (LLM), prompts, and the retrieval chain.
@@ -121,7 +122,7 @@ Below is an example screenshot showcasing the working application using the Stre
 ## Efficiency
 
 **Indexing:**
-- Embedding all the chunks extracted from the repository took an average of **`9 minutes`**. This was due to the limitation of not being able to pass all the chunks at once. Instead, the process involved looping through the chunks and adding the embedded data to the database incrementally.
+- Embedding and indexing all the chunks extracted from the repository took an average of **`9 minutes`**. This was due to the limitation of not being able to pass all the chunks at once. Instead, the process involved looping through the chunks and adding the embedded data to the database incrementally.
 
 **Querying:**
 - Querying the FAISS database (e.g., for a question like "What is Vanna?") took an average of **`1.1135 seconds`**.
