@@ -24,5 +24,5 @@ if input_text:
     st.write(result["response"]["answer"])
 
     with st.expander("Click to view the context behind the answer"):
-        st.write(result["response"]["context"])
+        st.write(set(result["github_links"]))
     st.write()
