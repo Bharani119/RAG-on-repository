@@ -25,8 +25,15 @@ async def retrieve_chain(query: Query):
     try:
         # Run the retrieval chain with the input query
         response = retrieval_chain.invoke({"input": query.query})
-        return {"response": response}
+        links = [
+            context_link.metadata["source"]
+            .replace("repo", "https://github.com/vanna-ai/vanna/blob/main")
+            .replace("\\", "/")
+            for context_link in response["context"]
+        ]
+        return {"response": response, "github_links": links}
     except Exception as e:
+        print(e)
         raise HTTPException(status_code=500, detail=str(e))
 
 

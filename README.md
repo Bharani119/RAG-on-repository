@@ -6,24 +6,27 @@ A **RAG (Retrieval-Augmented Generation)** application that answers users' queri
 
 ## Explanation of Files
 
-### 1. `requirements.txt`
+### 1. `.env`
+- Contains the environment variables required to run the application.
+
+### 2. `requirements.txt`
 - Contains the Python packages required to run the application.
 
-### 2. `generate_embeddings.py`
+### 3. `generate_embeddings.py`
 - Generates embeddings for your documents and saves them to the specified `faiss_index` path.
 - Files with extensions `.py`, `.md`, and `.txt` were considered for generating the embeddings as they provide relevant knowledge about the repository.
 
-### 3. `server_llm.py`
+### 4. `server_llm.py`
 - Loads and initializes the embeddings, the language model (LLM), prompts, and the retrieval chain.
 
-### 4. `app.py`
+### 5. `app.py`
 - A FastAPI application that imports `server_llm.py` to create a POST route and expose the API.
 
-### 5. `client.py`
+### 6. `client.py`
 - Acts as a client application using **Streamlit**.
 - Builds a simple web interface to connect with the FastAPI backend and serve as a frontend to the user.
 
-### 6. `Dockerfile`
+### 7. `Dockerfile`
 - Contains the configuration to build a Docker image for the FastAPI application.
 
 ---
@@ -56,7 +59,11 @@ A **RAG (Retrieval-Augmented Generation)** application that answers users' queri
 
 ## How to Run the Application
 
-### Step 1: Generate Embeddings
+### Step 1: Set the Environment Variables
+Set the OpenAI key and endpoints to communicate with the OpenAI service.  
+Open the file named `.env` and populate it with your credentials.
+
+### Step 2: Generate Embeddings
 To generate embeddings based on new content from the repository, run the following command:
 
 ```python
@@ -67,7 +74,7 @@ This command will clone the repository if it is not already present and then gen
 
 **Note:** Pre-generated embeddings are already available and stored in the directory `faiss_index/`
 
-### Step 2: Build the Docker Image
+### Step 3: Build the Docker Image
 Run the following command to build a Docker image for the FastAPI application:
 
 ```bash
@@ -83,7 +90,7 @@ What this command will do:
 
 ---
 
-### Step 3: Run the Docker Container
+### Step 4: Run the Docker Container
 Start the Docker container with the following command:
 
 ```bash
@@ -94,7 +101,7 @@ This command runs the image as a container and exposes port `8000` on `localhost
 
 ---
 
-### Step 4: Run the Client Application
+### Step 5: Run the Client Application
 To start the web-based Streamlit frontend:
 
 1. Install Streamlit if it’s not already installed:
