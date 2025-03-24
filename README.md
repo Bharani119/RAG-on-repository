@@ -35,7 +35,7 @@ A **RAG (Retrieval-Augmented Generation)** application that answers users' queri
 
 - [Python](https://www.python.org/)
 - [LangChain](https://www.langchain.com/)
-- [OpenAI](https://platform.openai.com/)
+- [OpenAI (GPT-4o)](https://platform.openai.com/)
 - [FAISS](https://faiss.ai/)
 - [FastAPI](https://fastapi.tiangolo.com/)
 - [Docker](https://www.docker.com/)
